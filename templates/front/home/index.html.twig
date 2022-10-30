@@ -1,0 +1,90 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}VaPeuR-iSH{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h1 class="mt-3 mb-4">Les jeux les plus joués</h1>
+            <a class="btn btn-primary h-50 my-auto"
+               href="{{ path('app_game_index') }}"
+            >
+                Voir tout
+            </a>
+        </div>
+        <div class="row">
+            {% for gameIteration in mostPlayedGames %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'front/partials/_games.html.twig' with {
+                        'game': gameIteration
+                    } %}
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="d-flex justify-content-between">
+            <h1 class="mt-3 mb-4">Les dernières sorties</h1>
+            <a class="btn btn-primary h-50 my-auto"
+                href="{{ path('app_game_index') }}"
+            >
+                Voir tout
+            </a>
+        </div>
+        <div class="row">
+            {% for gameIteration in lastPublished %}
+                <div class="col-lg-3 col-md-6">
+                {# ici on inclu le template avec le chemin #}
+                    {% include 'front/partials/_games.html.twig' with {
+                        'game': gameIteration,
+                        'lowHeight': 1
+                    } %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark pt-2 pb-4">
+        <h1 class="mt-3 mb-4">Les derniers commentaires</h1>
+        <div class="row">
+            {% for comment in lastComments %}
+                <div class="col-lg-3 col-md-6 my-2 my-lg-0">
+                    {% include 'front/partials/_comment.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h1 class="mt-3 mb-4">Les dernières sorties</h1>
+            <a class="btn btn-primary h-50 my-auto"
+               href="{{ path('app_game_index') }}"
+            >
+                Voir tout
+            </a>
+        </div>
+        <div class="row">
+            {% for gameIteration in mostSellers %}
+                <div class="col-lg-4 col-md-6">
+                    {% include 'front/partials/_games.html.twig' with {
+                        'game': gameIteration,
+                    } %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="mt-3 mb-4">Les genres</h1>
+        <div class="row">
+            {% for genre in genres %}
+                <div class="col-lg-4 col-md-6 my-3">
+                    {% include 'front/partials/_genres.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
